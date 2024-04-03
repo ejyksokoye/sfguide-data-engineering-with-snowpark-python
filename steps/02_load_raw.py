@@ -5,11 +5,12 @@
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 
-import time
+import time 
 from snowflake.snowpark import Session
 #import snowflake.snowpark.types as T
 #import snowflake.snowpark.functions as F
 
+#new_session = Session.builder.configs(connection_parameters).create()  
 
 POS_TABLES = ['country', 'franchise', 'location', 'menu', 'truck', 'order_header', 'order_detail']
 CUSTOMER_TABLES = ['customer_loyalty']
@@ -64,9 +65,13 @@ def validate_raw_tables(session):
         print('{}: \n\t{}\n'.format(tname, session.table('RAW_CUSTOMER.{}'.format(tname)).columns))
 
 
+
+
 # For local debugging
 if __name__ == "__main__":
     # Create a local Snowpark session
     with Session.builder.getOrCreate() as session:
         load_all_raw_tables(session)
 #        validate_raw_tables(session)
+
+
